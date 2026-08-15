@@ -2,25 +2,32 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# تثبيت Docker وأدوات البناء
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     gcc \
     python3-dev \
-    docker.io \
+    ca-certificates \
+    curl \
  && rm -rf /var/lib/apt/lists/*
 
-# نسخ ملفات المشروع
 COPY . .
 
-# تثبيت متطلبات البوت
-RUN python -m pip install --upgrade pip setuptools wheel \
- && pip install --no-cache-dir -r "requirements.txt"
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel
 
-# تثبيت مكتبة docker-py للتحكم في Docker
-RUN pip install docker
+RUN if [ -f "requirements.txt" ]; then \
+        python -m pip install --no-cache-dir -r requirements.txt; \
+    elif [ -f "requirements.txt" ]; then \
+        python -m pip install --no-cache-dir -r "requirements.txt"; \
+    else \
+        echo "ERROR: requirements.txt not found"; \
+        exit 1; \
+    fi
 
-# سكريبت البدء (سنضعه في الخطوة التالية)
+RUN mkdir -p /app/user_data
+
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
