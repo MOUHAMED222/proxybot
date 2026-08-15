@@ -5,7 +5,6 @@ primary_region = 'lax'
   dockerfile = 'Dockerfile'
 
 [env]
-  DOCKER_HOST = 'unix:///var/run/docker.sock'
   USER_DATA_DIR = '/app/user_data'
 
 # مجلد واحد فقط - سيتم استخدامه لتخزين بيانات المستخدمين والحاويات
