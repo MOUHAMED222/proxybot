@@ -15,7 +15,7 @@ COPY . .
 
 # تثبيت متطلبات البوت
 RUN python -m pip install --upgrade pip setuptools wheel \
- && pip install --no-cache-dir -r "requirements (6).txt"
+ && pip install --no-cache-dir -r "requirements.txt"
 
 # تثبيت مكتبة docker-py للتحكم في Docker
 RUN pip install docker
