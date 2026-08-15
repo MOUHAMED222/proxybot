@@ -20,7 +20,6 @@ primary_region = 'lax'
   min_machines_running = 1
 
 [[vm]]
-  cpu_kind = 'shared'
-  cpus = 8
-  memory_mb = 8192
-  privileged = true   # ضروري لتشغيل Docker daemon داخل الحاوية
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 2
