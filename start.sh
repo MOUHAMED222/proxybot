@@ -10,4 +10,4 @@ echo "Docker daemon started with PID $DOCKER_PID"
 sleep 10
 
 # تشغيل البوت (إذا كان اسم الملف الرئيسي main.py، وإلا غيّره)
-exec python -u main.py
+exec python -u bot.py
